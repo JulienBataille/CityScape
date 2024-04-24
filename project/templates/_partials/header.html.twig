@@ -1,0 +1,85 @@
+<header class="header">
+	<div class="container container-two">
+		<nav
+			class="header-inner flx-between">
+			<!-- Logo Start -->
+			<div class="logo">
+				<a href="{{path('app_main') }}" class="link">
+					<img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo">
+				</a>
+			</div>
+			<!-- Logo End  -->
+
+			<!-- Menu Start  -->
+			<div class="header-menu d-lg-block d-none">
+
+				<ul class="nav-menu flx-align " itemscope itemtype="https://schema.org/BreadcrumbList">
+					<li class="nav-menu__item has-submenu">
+						<a href="javascript:void(0)" class="nav-menu__link">Accueil</a>
+					</li>
+					{% for menu in categories %}
+						<li class="nav-menu__item has-submenu" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+							<a itemprop="item" href="javascript:void(0)" class="nav-menu__link">
+								<span itemprop="name">{{menu.name}}</span>
+							</a>
+							<meta itemprop="position" content="1">
+							<ul class="nav-submenu">
+								{% for subMenu in menu.categories %}
+									<li class="nav-submenu__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+										<a itemprop="item" href="{{ path ('propertylisting', {'souscategory': subMenu.slug, 'category': menu.slug})}}" class="nav-submenu__link">
+											<span itemprop="name">{{subMenu.name}}</span>
+										</a>
+										<meta itemprop="position" content="{{ loop.index }}">
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
+					{% endfor %}
+					<li class="nav-menu__item">
+						<a href="contact.html" class="nav-menu__link">Contact</a>
+					</li>
+
+							{# menu des langues #}
+					<li class="nav-menu__item has-submenu">
+						<a href="javascript:void(0)" class="nav-menu__link">Langue</a>
+						<ul class="nav-submenu">
+							{% for locale in locales %}
+								{% if locale == 'fr' %}
+									<li class="nav-submenu__item">
+										<a href="{{ path('app_main', {'_locale': ''}) }}" class="nav-submenu__link">{{ locale }}</a>
+									</li>
+								{% else %}
+									<li class="nav-submenu__item">
+										<a href="{{ path('app_main', {'_locale': locale}) }}" class="nav-submenu__link">{{ locale }}</a>
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!-- Menu End  -->
+
+			<!-- Header Right start -->
+			<div class="header-right flx-align">
+				<button type="button" class="offcanvas-btn d-lg-block d-none">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewbox="0 0 30 24" fill="none">
+						<line x1="0.0078125" y1="12.293" x2="30.0078" y2="12.293" stroke="#181616" stroke-width="3"/>
+						<path d="M5.00781 22.293H30.0078" stroke="#181616" stroke-width="3"/>
+						<path d="M10.0078 2.29297H30.0078" stroke="#181616" stroke-width="3"/>
+					</svg>
+				</button>
+				<a href="property-details.html" class="btn btn-outline-light d-lg-block d-none">Sell Property
+					<span class="icon-right text-gradient icon">
+						<i class="fas fa-arrow-right"></i>
+					</span>
+				</a>
+				<button type="button" class="toggle-mobileMenu d-lg-none ms-3">
+					<i class="las la-bars"></i>
+				</button>
+			</div>
+			<!-- Header Right End  -->
+		</nav>
+	</div>
+</header>
+

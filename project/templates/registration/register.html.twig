@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    {{ form_errors(registrationForm) }} 
+<section class="loginRegister padding-y-120">
+    <div class="container container-two">
+        <div class="loginRegister-box card common-card">
+            <div class="card-body">
+                <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <div class="loginRegister-thumb rounded overflow-hidden me-lg-2 d-flex h-100">
+                            <img src="assets/images/thumbs/login-img.avif" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="loginRegister-content">
+                            <form action="#">
+                                <h3 class="loginRegister__title text-poppins">Sign Up to CityScape</h3>
+                                <p class="loginRegister__desc mb-4 font-18">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, corrupti.</p>
+                        {{ form_start(registrationForm) }}
+                                <div class="row gy-lg-4 gy-3">
+                                    <div class="col-sm-6 col-xs-6">
+                                        <label for="FirstName" class="form-label">First Name</label>
+                                        {{ form_widget(registrationForm.firstName) }}
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <label for="LastName" class="form-label">Last Name</label>
+                                        {{ form_widget(registrationForm.lastName) }}
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <label for="username" class="form-label">Username</label>
+                                        {{ form_widget(registrationForm.username) }}
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                    <label for="username" class="form-label">Email</label>
+                                        {{ form_widget(registrationForm.email) }}
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="your-password" class="form-label">Password</label>
+                                        <div class="position-relative">
+                                            {{ form_widget(registrationForm.plainPassword, {
+                                                label: 'Password'
+                                            }) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 py-2">
+                                        <div class="common-check">
+                                            {{ form_widget(registrationForm.agreeTerms) }}
+                                            <div class="form-check-label">
+                                                <label class="" for="remember"> I agree with Licences Info,</label>
+                                                <a href="#" class="text-decoration-underline text-main">Terms of Service</a>
+                                                <label class="" for="remember"> , Privacy Policy </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-main w-100">Register <span class="icon-right"> <i class="far fa-paper-plane"></i> </span> </button>
+                                    </div>
+                                    {{ form_end(registrationForm) }}
+                                    <div class="col-sm-12 mb-0">
+                                        <div class="have-account text-center">
+                                            <p class="text">Already Have An Account? <a class="link text-main text-decoration-underline font-14 text-poppins" href="login.html">Login</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

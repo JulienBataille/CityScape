@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script src="https://cdn.jsdelivr.net/gh/hpruvot/tarteaucitron@master/tarteaucitron.js"></script>
+        <script type="text/javascript">
+            if(tarteaucitron) {
+                tarteaucitron.init({
+                    "tarteaucitronForceCDN": "https://cdn.jsdelivr.net/gh/AmauriC/tarteaucitron.js@master",
+                    "privacyUrl": "",
+
+                    "hashtag": "#tarteaucitron",
+                    "cookieName": "tartaucitron",
+
+                    "orientation": "bottom",
+                    "showAlertSmall": false, 
+                    "cookieslist": true,
+
+                    "adblocker": false,
+                    "AcceptAllCta": true,
+                    "highPrivacy": false, 
+                    "handleBrowserDNTRequest": false,
+
+                    "removeCredit": true, 
+                    "moreInfoLink": false, 
+                    "useExternalCss": false 
+
+                    //"cookieDomain": ".my-multisite-domaine.fr" / Shared cookie for subdomain website /
+                });
+
+                tarteaucitron.user.gtagUa = 'G-XXXXXXXXXXXXXXXXXX';
+                // tarteaucitron.user.gtagCrossdomain = ['example.com', 'example2.com'];
+                tarteaucitron.user.gtagMore = function () { / add here your optionnal gtag() */ };
+                (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+            }
+        </script>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+            <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/line-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/image-uploader.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+            {% block stylesheet %}{% endblock %}
+    </head>
+    <body>
+        <div class="preloader">
+            <div class="loader"></div>
+        </div>
+        <div class="overlay"></div>
+        <div class="side-overlay"></div>
+        <div class="progress-wrap">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+        </div>
+        <main class="body-bg">
+            {% include '_partials/headertop.html.twig' %}
+            {{ render(controller('App\\Controller\\Menu\\MenuController::index')) }}
+            
+            {% block body %}{% endblock %}
+                
+            {% include '_partials/footer.html.twig' %}
+        </main>
+
+        <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+        <script src="{{ asset('assets/js/boostrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/js/magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+        <script src="{{ asset('assets/js/counterup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.marquee.min.js') }}"></script>
+        <script src="{{ asset('assets/js/image-uploader.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

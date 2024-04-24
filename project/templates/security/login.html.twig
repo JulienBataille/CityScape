@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <section class="loginRegister padding-y-120">
+    <div class="container container-two">
+        <div class="loginRegister-box card common-card">
+            <div class="card-body">
+                <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <div class="loginRegister-thumb rounded overflow-hidden me-lg-2 d-flex h-100">
+                            <img src="assets/images/thumbs/login-img.avif" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="loginRegister-content">
+                            <form action="#">
+                                <h3 class="loginRegister__title text-poppins">Sign in to CityScape</h3>
+                                <p class="loginRegister__desc mb-4 font-18">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, corrupti.</p>
+                                    <div class="col-12">
+                                        <label for="Email" class="form-label">Email</label>
+                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="your-password" class="form-label">Password</label>
+                                        <div class="position-relative">
+                                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                            <span class="password-show-hide fas fa-eye toggle-password la-eye-slash" id="#your-password"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group py-2 flx-between">
+                                            <div class="common-check mb-0">
+                                                <input class="form-check-input" type="checkbox" value="" id="remember">
+                                                <label class="form-check-label" for="remember">Remember me </label>
+                                            </div>
+                                            <a href="#" class="forgot-password text-decoration-underline text-main text-poppins font-14">Forgot Password?</a>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-main w-100">Login <span class="icon-right"> <i class="far fa-paper-plane"></i> </span> </button>
+                                    </div>
+                                    <div class="col-sm-12 mb-0">
+                                        <div class="have-account text-center">
+                                            <p class="text">Don't Have An Account? <a class="link text-main text-decoration-underline font-14 text-poppins" href="register.html">Register</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</form>
+{% endblock %}
