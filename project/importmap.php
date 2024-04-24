@@ -37,4 +37,5 @@ return [
     '@symfony/ux-react' => [
         'path' => './vendor/symfony/ux-react/assets/dist/loader.js',
     ],
+    
 ];

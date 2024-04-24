@@ -1,5 +1,15 @@
 {
   "devDependencies": {
-    "@babel/preset-react": "^7.24.1"
+      "@babel/cli": "^7.21.5",
+      "@babel/core": "^7.21.8",
+      "@babel/preset-react": "^7.18.6",
+      "svelte": "^3.59.1"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+      "build": "yarn build-react && yarn build-svelte",
+      "build-react": "babel assets/react --out-dir assets/build/react --presets=@babel/preset-react",
+      "build-svelte": "node bin/compile_svelte.js"
   }
 }
