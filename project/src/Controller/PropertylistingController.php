@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Newsletters\Newsletters;
+use App\Form\NewslettersType;
 use App\Repository\PropertyRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +17,7 @@ class PropertylistingController extends AbstractController
             'en'=>'/{category}/{souscategory}.html',                   
             'ru'=>'/{category}/{souscategory}.html'],
             name: 'propertylisting')]
-    public function index($souscategory, $category, PropertyRepository $property, PaginatorInterface $paginator, Request $request): Response
+    public function index($souscategory, $category, PropertyRepository $property, PaginatorInterface $paginator, Request $request, ): Response
     {
         $query = $property->findPropertyByCategory( $souscategory,$category);
         $pagination = $paginator->paginate(
@@ -24,7 +26,15 @@ class PropertylistingController extends AbstractController
             12 /*limit per page*/
         );
 
-        return $this->render('property/listing.html.twig', ['properties' => $pagination]);
+        $newsletters = new Newsletters();
+        $form = $this->createForm(NewslettersType::class, $newsletters, [
+            'method' => 'POST', //possibilité d'insérer class et ID avec 'attr'
+        ]);
+        $form->handleRequest($request);
+
+        return $this->render('property/listing.html.twig',
+         ['properties' => $pagination,
+         'form' => $form->createView()
+        ]);
     }
 }
-
